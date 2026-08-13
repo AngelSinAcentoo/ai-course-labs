@@ -1,24 +1,21 @@
 # Artificial Intelligence Course Labs
 
-Dos demostraciones reproducibles de inteligencia artificial:
+Two reproducible artificial intelligence exercises:
 
-1. clasificación del conjunto Iris con una red neuronal;
-2. preguntas y respuestas extractivas con Transformers.
+1. Iris dataset classification with a neural network
+2. Extractive question answering with Transformers
 
-> **English summary:** Reproducible AI course labs for neural-network
-> classification and extractive transformer question answering.
+## What was improved
 
-## Mejoras aplicadas
+- Reusable functions replace monolithic scripts.
+- Random seeds make runs easier to reproduce.
+- Data normalization is fitted only on the training set.
+- The Keras model uses an explicit `Input` layer.
+- The Transformer model is loaded only when needed.
+- The question-answering pipeline can be injected, so tests do not need to download a model.
+- Both exercises have command-line arguments.
 
-- funciones reutilizables en lugar de scripts monolíticos;
-- semillas aleatorias configuradas;
-- normalización entrenada únicamente con el conjunto de entrenamiento;
-- capa `Input` explícita en Keras;
-- carga diferida del modelo Transformer;
-- inyección de la tubería de QA para permitir pruebas sin descargar modelos;
-- argumentos de línea de comandos.
-
-## Instalación
+## Installation
 
 ```powershell
 python -m venv .venv
@@ -26,28 +23,25 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-## Clasificador Iris
+## Iris classifier
 
 ```powershell
 $env:PYTHONPATH='src'
 python -m ai_labs.iris_classifier --epochs 60
 ```
 
-## Preguntas y respuestas
+## Question answering
 
 ```powershell
 $env:PYTHONPATH='src'
 python -m ai_labs.transformer_qa
 ```
 
-La primera ejecución descargará el modelo de Hugging Face. El contexto y las
-preguntas de ejemplo están en inglés porque el modelo predeterminado fue
-ajustado con SQuAD2 en inglés. El nombre del modelo puede cambiarse con
-`--model`.
+The first run downloads the Hugging Face model. The default context and questions are in English because the model was fine-tuned on SQuAD2. You can choose another model with `--model`.
 
-## Pruebas
+## Tests
 
-Las pruebas no requieren acceso a la red:
+The tests do not require network access:
 
 ```powershell
 .\run-tests.ps1
